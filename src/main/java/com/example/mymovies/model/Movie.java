@@ -1,4 +1,4 @@
-package com.example.MyMovies.model;
+package com.example.mymovies.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,11 +12,15 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private double rating;
+    private Double rating;
     private String genre;
 
+    public Movie(){
+        this.name = null;
+        this.rating = null;
+        this.genre = null;
+    }
     public Movie(String name, double rating, String genre){
-//        this.id = (int)(Math.random()* 100);
         this.name = name;
         this.rating = rating;
         this.genre = genre;
