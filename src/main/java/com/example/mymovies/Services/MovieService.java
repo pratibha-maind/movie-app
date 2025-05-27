@@ -4,8 +4,11 @@ import com.example.mymovies.mapper.MovieMapper;
 import com.example.mymovies.model.Movie;
 import com.example.mymovies.model.MovieRequest;
 import com.example.mymovies.repository.MovieRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -20,6 +23,15 @@ public class MovieService {
     public Movie getMovies(){
         dummyMovie = new Movie("Top Gun", 7.8, "Action");
         return dummyMovie;
+    }
+
+    public Movie getMovie(Long id){
+        Optional<Movie> movie = movieRepository.findById(id);    //findById() returns a Optional type to prevent Null pointer exception. If it returns data we can use .get() to extract it.
+        if(movie.isPresent())
+            return movie.get();
+        else {
+            throw new EntityNotFoundException();
+        }
     }
 
     public Movie addMovie(MovieRequest movieRequest){
