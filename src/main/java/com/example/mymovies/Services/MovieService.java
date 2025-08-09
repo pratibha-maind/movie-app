@@ -20,11 +20,6 @@ public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public Movie getMovies(){
-        dummyMovie = new Movie("Top Gun", 7.8, "Action");
-        return dummyMovie;
-    }
-
     public Movie getMovie(Long id){
         Optional<Movie> movie = movieRepository.findById(id);    //findById() returns a Optional type to prevent Null pointer exception. If it returns data we can use .get() to extract it.
         if(movie.isPresent())

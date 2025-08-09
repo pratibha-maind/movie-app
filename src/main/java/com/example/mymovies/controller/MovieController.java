@@ -12,11 +12,6 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping(path = "/movies")
-    public Movie getMovies(){
-        return movieService.getMovies();
-    }
-
     @GetMapping(path = "/movie/{id}")
     public Movie getMovie(@PathVariable Long id){
         return movieService.getMovie(id);
